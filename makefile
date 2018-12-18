@@ -6,7 +6,7 @@ RM = rm -f
 	$(JC) $(JFLAGS) $*.java
 	
 CLASSES = \
-		Process.java \
+		Process.java\
 		ProcessInterface.java
 
 default: classes

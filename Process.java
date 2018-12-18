@@ -1,5 +1,3 @@
-package processpackage;
-
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
@@ -25,7 +23,7 @@ public class Process implements ProcessInterface{
         this.id = id;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         //input
         String id = args[0];
         String[] neighbors = args[1].split(",");
@@ -73,7 +71,7 @@ public class Process implements ProcessInterface{
                 String key = null;
                 try {
                     key = hello.getKey("grupo_1");
-                    System.out.println(key);
+                    System.out.println("La llave es:"+key);
                 } catch (RemoteException e1) {
                     e1.printStackTrace();
                 } catch (Exception e) {
@@ -82,6 +80,7 @@ public class Process implements ProcessInterface{
 
                 try {
                     textCipher = new String(Files.readAllBytes(Paths.get("cifrado_grupo_1.txt")));
+                    System.out.println("El texto cifrado es:" + textCipher);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
