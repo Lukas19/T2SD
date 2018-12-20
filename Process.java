@@ -54,7 +54,7 @@ public class Process implements ProcessInterface{
                 if (System.getSecurityManager() == null) {
                     System.setSecurityManager(new SecurityManager());
                 }
-                String remoteHostName = "10.10.2.214";
+                String remoteHostName = ip;
                 String name = "/PublicKey";
                 String connectLocation = "//" + remoteHostName + name;
                 InterfaceServer hello = null;
