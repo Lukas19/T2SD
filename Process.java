@@ -16,7 +16,7 @@ public class Process implements ProcessInterface{
     public int received = 0;
     public String id;
     public List<String> alreadySended;
-    public String textDecipher;
+    public static String textDecipher;
     public int cipherReceived = 0;
 
     public Process(String[] neighbors, boolean isInitiator, String id) throws RemoteException  {
