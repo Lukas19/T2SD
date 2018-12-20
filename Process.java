@@ -32,11 +32,6 @@ public class Process implements ProcessInterface{
         boolean isInitiator = Boolean.parseBoolean(args[2]);
         String route = args[3];
         String ip = args[4];
-        if(isInitiator) {
-            String route = args[3];
-            String ip = args[4];
-        }
-
         try {
             Process obj = new Process(neighbors, isInitiator, id);
             ProcessInterface stub2 = (ProcessInterface) UnicastRemoteObject.exportObject(obj, 0);
