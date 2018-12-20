@@ -30,8 +30,8 @@ public class Process implements ProcessInterface{
         String id = args[0];
         String[] neighbors = args[1].split(",");
         boolean isInitiator = Boolean.parseBoolean(args[2]);
-        String route;
-        String ip;
+        String route = "0";
+        String ip = "0";
         if(isInitiator) {
             route = args[3];
             ip = args[4];
