@@ -6,4 +6,6 @@ public interface ProcessInterface extends Remote {
 
     public String sendOk(String from, String to) throws RemoteException;
 
+    public String message(String origen, String messages) throws RemoteException;
+
 }

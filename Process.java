@@ -16,6 +16,8 @@ public class Process implements ProcessInterface{
     public int received = 0;
     public String id;
     public List<String> alreadySended;
+    public String textDecipher;
+    public int cipherReceived = 0;
 
     public Process(String[] neighbors, boolean isInitiator, String id) throws RemoteException  {
         this.neighbors = neighbors;
@@ -85,7 +87,7 @@ public class Process implements ProcessInterface{
                     e.printStackTrace();
                 }
 
-                String textDecipher = null;
+                textDecipher = null;
                 try {
                     textDecipher = hello.decipher("grupo_1", textCipher, key);
                 } catch (RemoteException e1) {
@@ -95,6 +97,8 @@ public class Process implements ProcessInterface{
                 }
 
                 System.out.println("Texto decifrado es :" + textDecipher);
+
+                stub2.message(id, textDecipher);
             }
         } catch (RemoteException e) {
             System.out.println("Couldnt bind node to registry\n");
@@ -183,6 +187,52 @@ public class Process implements ProcessInterface{
             received += 1;
         }
         return null;
+    }
+
+    @Override
+    public String message (String idOrigin, String messages) throws RemoteException {
+        if (isInitiator && cipherReceived == 0) {
+            cipherReceived = 1;
+            Registry reg = LocateRegistry.getRegistry(2000);
+            alreadySended = new ArrayList<>();
+            for(String ids : neighbors){
+                if(!alreadySended.contains(ids)) {
+                    try {
+                        ProcessInterface stub = (ProcessInterface) reg.lookup(ids);
+                        System.out.println("Sending message to " + ids);
+                        alreadySended.add(ids);
+                        stub.message(id, textDecipher);
+                    } catch (NotBoundException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            return null;
+        }
+        else {
+            if (cipherReceived != 1) {
+                System.out.println("Message received from " + idOrigin);
+                System.out.println("The message is " + messages)
+                String parent = idOrigin;
+                cipherReceived == 1;
+                Registry reg = LocateRegistry.getRegistry(2000);
+                ProcessInterface stub;
+                alreadySended = new ArrayList<>();
+                for (String ids : neighbors) {
+                    if (!ids.equals(parent) && !alreadySended.contains(ids)) {
+                        try {
+                            stub = (ProcessInterface) reg.lookup(ids);
+                            alreadySended.add(ids);
+                            System.out.println("Sending this message to " + ids);
+                            String value = stub.message(id, messages);
+                        } catch (NotBoundException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+            return null;
+        }
     }
 
 }
