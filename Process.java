@@ -81,7 +81,7 @@ public class Process implements ProcessInterface{
                 }
 
                 try {
-                    textCipher = new String(Files.readAllBytes(Paths.get("cifrado_grupo_1.txt")));
+                    textCipher = new String(Files.readAllBytes(Paths.get(route)));
                     System.out.println("El texto cifrado es:" + textCipher);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -212,9 +212,9 @@ public class Process implements ProcessInterface{
         else {
             if (cipherReceived != 1) {
                 System.out.println("Message received from " + idOrigin);
-                System.out.println("The message is " + messages)
+                System.out.println("The message is " + messages);
                 String parent = idOrigin;
-                cipherReceived == 1;
+                cipherReceived = 1;
                 Registry reg = LocateRegistry.getRegistry(2000);
                 ProcessInterface stub;
                 alreadySended = new ArrayList<>();
@@ -238,4 +238,3 @@ public class Process implements ProcessInterface{
 }
 
 
-//NOMBRE DEL nodo | objeto métodos
