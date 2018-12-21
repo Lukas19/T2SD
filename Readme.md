@@ -1,6 +1,6 @@
 ## Tarea 2 Sistemas Distribuidos 
 
-Ignacio Valenzuela 201473
+Ignacio Valenzuela 201473055-1
 Lukas Zamora 201430047-6
 
 Para ejecutar un nodo cualquiera se debe ejecutar:
